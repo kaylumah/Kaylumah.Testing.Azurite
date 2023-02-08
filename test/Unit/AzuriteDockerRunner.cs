@@ -23,7 +23,7 @@ public class AzuriteDockerRunner
     private const string DockerAzuriteEnvVariableName = "AZURITE_ACCOUNTS";
     private const string DockerAzuriteEnvVariableValue = "account1:key1";
 
-    private readonly TestcontainersContainer _testContainer;
+    private readonly IContainer _testContainer;
 
     private AzuriteAccountBuilder? _accountBuilder;
 
@@ -54,7 +54,7 @@ public class AzuriteDockerRunner
         }.ToArray();
 
         _testContainer
-            = new TestcontainersBuilder<TestcontainersContainer>()
+            = new ContainerBuilder()
                 .WithImage(DockerImage)
                 .WithBindMount(hostWorkingDirectory, DockerDirectory)
                 .WithCommand(arguments)
